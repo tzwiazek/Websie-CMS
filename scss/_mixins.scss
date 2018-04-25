@@ -1,0 +1,101 @@
+// ----------------
+//     MIXINS
+// ----------------
+
+$noPrefixes: true;
+
+@mixin prefix($property, $value, $prefixes) {
+
+    $noPrefixes: false !default;
+    $prefixes: if($noPrefixes, false, $prefixes);
+
+    @if $prefixes {
+        @each $prefix in $prefixes {
+            -#{$prefix}-#{$property}: $value;
+        }
+    }
+
+}
+
+@mixin selection($color, $bgcolor: invert($color), $elem: "") {
+
+    #{$elem}::-webkit-selection {
+        color: $color;
+        background-color: $bgcolor;
+    }
+
+    #{$elem}::-moz-selection {
+        color: $color;
+        background-color: $bgcolor;
+    }
+
+   #{$elem}::selection {
+        color: $color;
+        background-color: $bgcolor;
+    } 
+}
+
+@mixin inline-block {
+   display: inline-block;
+    *display: inline;
+    zoom: 1; 
+}
+
+@mixin border-radius($radius) {
+    @include prefix(border-radius, $radius, webkit moz);
+    border-radius: $radius;
+}
+
+@mixin box-shadow($shadows...) {
+    @include prefix(box-shadow, $shadows, webkit moz);
+    box-shadow: $shadows;
+}
+
+@mixin text-shadow($color, $x: 1px, $y: 1px, $radius: 0, $invert: false) {
+
+    @if $invert {
+        $x: $x * (-1);
+        $y: $y * (-1);
+    }
+
+    text-shadow: $x $y $radius $color;
+}
+
+@mixin transition($props: all, $speed: 0.2s, $easing: linear) {
+    @include prefix(transition, $props $speed $easing, webkit moz o ms);
+    transition: $props $speed $easing;
+}
+
+@mixin button($color) {
+    $bsColor: null;
+    $tsColor: null;
+    $tColor: null;
+
+    @if lightness($color) > 50% {
+        $bsColor: darken($color, 15%);
+        $tsColor: darken($color, 35%);
+        $tColor: lighten($color, 30%);
+    } @else {
+        $bsColor: lighten($color, 10%);
+        $tsColor: darken($color, 35%);
+        $tColor: lighten($color, 30%);
+    }
+
+    @include inline-block;
+    padding: 15px 35px;
+    position: relative;
+    @include border-radius(8px);
+    @include box-shadow(0px 9px 0px $bsColor, 0px 9px 25px rgba(0, 0, 0, .7));
+    @include transition($speed: 0.1s);
+    @include text-shadow($tsColor, $invert: true);
+
+    background-color: $color;
+
+    color: $tColor;
+
+    &:active {
+        @include box-shadow(0px 3px 0px $bsColor, 0px 3px 6px rgba(0, 0, 0, .9));
+
+        top: 6px;
+    }
+}
