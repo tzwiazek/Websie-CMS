@@ -951,8 +951,8 @@ $col -> column in database
 <!-- profilaktycznie
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 -->
-<script src="js/admin_panel.js"></script>
-<script>
+<script async src="js/admin_panel.js"></script>
+<script async>
 $(document).ready(function() {
    /***** default settings (css) *****/
    document.querySelector("#nav_css").addEventListener("click", function() {

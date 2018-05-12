@@ -17,12 +17,12 @@ window.smartsupp||(function(d) {
     c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
 </script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script src="js/scrollreveal.js"></script>
+<script async src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script async src="js/scrollreveal.js"></script>
 <script src="js/jquery.min.js"></script>
-<script src="js/eloboost.js"></script>
-<script src="js/owl.carousel.js"></script>
-<script src="js/scroll-top.js"></script>
+<script async src="js/eloboost.js"></script>
+<script async src="js/owl.carousel.js"></script>
+<script async src="js/scroll-top.js"></script>
 <?php mysqli_close($connect); ?>
 </body>
 </html>
